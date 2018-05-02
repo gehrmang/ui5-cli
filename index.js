@@ -1,13 +1,17 @@
 #!/usr/bin/env node
 
+const fs = require("fs");
+
 const files = require("./lib/files");
 const ui5init = require("./lib/ui5init");
 const jsGenerator = require("./lib/jsGenerator");
 const viewGenerator = require("./lib/viewGenerator");
+const runtime = require("./lib/runtime");
 
 const packageName = "de.gt.sap.ui5.base";
 const appTitle = "UI5 Base";
 const appDescription = "UI5 Base application";
+const openui5 = "/Users/gg/Programmierung/SAPUI5/openui5";
 
 ui5init.createFolders();
 ui5init.createComponent(packageName);
@@ -16,3 +20,11 @@ ui5init.createIndex(packageName, appTitle);
 ui5init.createI18n(appTitle, appDescription);
 jsGenerator.generateFile("App", packageName, jsGenerator.types.controller);
 viewGenerator.generateView("App", packageName);
+
+let config = `packageName=${packageName}
+openui5=${openui5}`
+
+fs.writeFileSync(".ui5", config);
+
+runtime.createPackage(appTitle.replace(/ /g, "-"), appDescription);
+runtime.createServer();
