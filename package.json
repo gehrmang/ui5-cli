@@ -1,0 +1,23 @@
+{
+    "name": "ui5-cli",
+    "version": "1.0.0",
+    "description": "Generator for SAPUI5 apps",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "bin": {
+        "ui5": "./index.js"
+    },
+    "author": "Gerry Gehrmann",
+    "license": "ISC",
+    "dependencies": {
+        "chalk": "^2.4.1",
+        "es6-template-strings": "^2.0.1",
+        "inquirer": "^5.2.0",
+        "js-beautify": "^1.7.5",
+        "mkdirp": "^0.5.1",
+        "simple-git": "^1.92.0",
+        "touch": "^3.1.0"
+    }
+}
