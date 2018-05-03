@@ -13,11 +13,13 @@
     "license": "ISC",
     "dependencies": {
         "chalk": "^2.4.1",
+        "commander": "^2.15.1",
         "es6-template-strings": "^2.0.1",
         "fs-extra": "^6.0.0",
         "inquirer": "^5.2.0",
+        "inquirer-path": "^1.0.0-beta5",
         "js-beautify": "^1.7.5",
         "mkdirp": "^0.5.1",
-        "simple-git": "^1.92.0"
+        "properties": "^1.2.1"
     }
 }
