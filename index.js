@@ -86,6 +86,7 @@ openui5=${openui5}`
 
         runtime.createPackage(appTitle, appDescription);
         runtime.createServer();
+        runtime.createGruntEnvironment();
 
         console.log(`Application "${appTitle}" initialized.`);
         console.log(`Run npm install && npm start to install and start the app.`);
