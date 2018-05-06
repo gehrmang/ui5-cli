@@ -1,0 +1,53 @@
+{
+    "single": {
+        "config": {
+            "routerClass": "sap.m.routing.Router",
+            "viewType": "XML",
+            "viewPath": "",
+            "controlId": "app",
+            "controlAggregation": "pages",
+            "async": true
+        },
+        "routes": [{
+            "pattern": "",
+            "name": "master",
+            "target": "master"
+        }],
+        "targets": {
+            "master": {
+                "viewID": "master",
+                "viewName": "Master"
+            }
+        }
+    },
+    "split": {
+        "config": {
+            "routerClass": "sap.m.routing.Router",
+            "viewType": "XML",
+            "viewPath": "",
+            "controlId": "app",
+            "controlAggregation": "detailPages",
+            "async": true
+        },
+        "routes": [{
+            "pattern": "",
+            "name": "master",
+            "target": ["master", "detail"]
+        }, {
+            "pattern": "detail",
+            "name": "detail",
+            "target": "detail"
+        }],
+        "targets": {
+            "master": {
+                "viewID": "master",
+                "viewName": "Master",
+                "controlAggregation": "masterPages"
+            },
+            "detail": {
+                "viewID": "detail",
+                "viewName": "Detail"
+            }
+        }
+    }
+}

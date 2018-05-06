@@ -1,18 +1,11 @@
-var properties = require("properties");
 let express = require("express");
 let app = express();
 
-properties.parse(".ui5", { path: true }, (error, config) => {
-    if (error) {
-        return console.error(error);
-    }
+app.use(express.static("webapp"));
+app.use("/resources", express.static("${openui5}/resources"));
+app.use(express.static("./"));
+app.use("/dist", express.static("dist"));
 
-    app.use(express.static("webapp"));
-    app.use("/resources", express.static(`${config.openui5}/resources`));
-    app.use(express.static("./"));
-    app.use("/dist", express.static("dist"));
-
-    let server = app.listen("8080", () => {
-        console.log("Listening on localhost:8080");
-    });
+let server = app.listen("8080", () => {
+    console.log("Listening on localhost:8080");
 });
