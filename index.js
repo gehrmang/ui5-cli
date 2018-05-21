@@ -140,23 +140,23 @@ function generateFile(name, controller, view) {
     }
     if (view || (!controller && !view)) {
         viewGenerator.generateView(name, packageName);
-    }
 
-    if (manifest["sap.ui5"] && manifest["sap.ui5"].routing) {
-        let routing = manifest["sap.ui5"].routing;
-        let lowerName = files.lowercase(name);
+        if (manifest["sap.ui5"] && manifest["sap.ui5"].routing) {
+            let routing = manifest["sap.ui5"].routing;
+            let lowerName = files.lowercase(name);
 
-        routing.routes.push({
-            "pattern": lowerName,
-            "name": lowerName,
-            "target": lowerName
-        });
+            routing.routes.push({
+                "pattern": lowerName,
+                "name": lowerName,
+                "target": lowerName
+            });
 
-        routing.targets[lowerName] = {
-            "viewID": lowerName,
-            "viewName": name
+            routing.targets[lowerName] = {
+                "viewID": lowerName,
+                "viewName": name
+            }
+
+            fs.writeFileSync(manifestPath, JSON.stringify(manifest, null, 4));
         }
-
-        fs.writeFileSync(manifestPath, JSON.stringify(manifest, null, 4));
     }
 }
