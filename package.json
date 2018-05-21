@@ -1,7 +1,7 @@
 {
     "name": "ui5-cli",
     "version": "1.0.0",
-    "description": "Generator for SAPUI5 apps",
+    "description": "Command line interface for OpenUI5 applications",
     "main": "index.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1"
@@ -10,7 +10,7 @@
         "ui5": "./index.js"
     },
     "author": "Gerry Gehrmann",
-    "license": "ISC",
+    "license": "MIT",
     "dependencies": {
         "chalk": "^2.4.1",
         "commander": "^2.15.1",
