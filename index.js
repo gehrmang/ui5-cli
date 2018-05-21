@@ -4,7 +4,6 @@ const fs = require("fs");
 const path = require("path");
 const inquirer = require("inquirer");
 const commander = require("commander");
-const properties = require("properties");
 
 inquirer.registerPrompt('path', require("inquirer-path").PathPrompt);
 
@@ -73,6 +72,11 @@ commander
 
 commander.parse(process.argv);
 
+if (!process.argv.slice(2).length) {
+    commander.outputHelp();
+}
+
+
 /**
  * Initialize a new UI5 application.
  */
@@ -119,7 +123,8 @@ function init() {
  * @param {boolean} view Flag indicating if a view should be created
  */
 function generateFile(name, controller, view) {
-    let manifest = require(`${files.getWebappPath()}/manifest.json`);
+    let manifestPath = `${files.getWebappPath()}/manifest.json`;
+    let manifest = require(manifestPath);
 
     if (!manifest || !manifest["sap.app"].id) {
         console.log(error);
@@ -130,10 +135,28 @@ function generateFile(name, controller, view) {
     let packageName = manifest["sap.app"].id;
     name = files.capitalize(name);
 
-    if (controller) {
+    if (controller || (!controller && !view)) {
         jsGenerator.generateFile(name, packageName, jsGenerator.types.controller);
     }
-    if (view) {
+    if (view || (!controller && !view)) {
         viewGenerator.generateView(name, packageName);
+    }
+
+    if (manifest["sap.ui5"] && manifest["sap.ui5"].routing) {
+        let routing = manifest["sap.ui5"].routing;
+        let lowerName = files.lowercase(name);
+
+        routing.routes.push({
+            "pattern": lowerName,
+            "name": lowerName,
+            "target": lowerName
+        });
+
+        routing.targets[lowerName] = {
+            "viewID": lowerName,
+            "viewName": name
+        }
+
+        fs.writeFileSync(manifestPath, JSON.stringify(manifest, null, 4));
     }
 }
