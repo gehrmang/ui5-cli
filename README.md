@@ -21,7 +21,7 @@ This is a command line interface for OpenUI5 applications.
 
 ## Deployment
 
-To make your app deployable to an existing SAP instance, use the generated Grunt file by running `grunt`. Grunt will generate all required additional and precompiles files and write them to the dist directory.
+To make your app deployable to an existing SAP instance, use the generated Grunt file by running `grunt`. Grunt will generate all required additional and precompiled files and write them to the dist directory.
 
 ## License
 MIT
